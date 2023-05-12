@@ -15,18 +15,19 @@ router.route('/').post(async (req, res) => {
 		const openAI = new OpenAI(process.env.OPENAI_API_KEY)
 		const model = 'text-davinci-003'
 
-		const generatePrompt = (topic) => {
-			return `Escribe una invitación de un evento virtual con el siguiente tema "${topic}", usando un tono creativo, amigable e informativo. Escribelo todos en un solo parrafo sin usar saltos de linea '\n'.`
+		const generatePrompt = (title, date, duration, hour, tags) => {
+			console.log(title, date, duration, hour, tags)
+			return `Escribe una invitacion breve para un evento de videojuegos llamado ${title}, que será el ${date} durara ${duration} minutos y comenzara a las ${hour}. Los tags del evento son ${tags}.`
 		}
 
-		const { prompt } = req.body
-		const title = 'Valorant Torneo'
-		const date = '20/03/2003'
-		const duration = '60'
-		const hour = '20:00'
+		const { title, date, duration, hour, tags } = req.body
 
 		await openAI
-			.generateText(generatePrompt(prompt), model, 100)
+			.generateText(
+				generatePrompt(title, date, duration, hour, tags),
+				model,
+				100,
+			)
 			.then((text) => {
 				res.status(200).json({ response: text })
 				console.log(text)
