@@ -26,10 +26,10 @@ router.route('/').post(async (req, res) => {
 			.generateText(
 				generatePrompt(title, date, duration, hour, tags),
 				model,
-				100,
+				80,
 			)
 			.then((text) => {
-				res.status(200).json({ response: text })
+				res.status(200).json({ description: text })
 				console.log(text)
 			})
 			.catch((error) => {
