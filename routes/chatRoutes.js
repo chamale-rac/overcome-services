@@ -17,7 +17,7 @@ router.route('/').post(async (req, res) => {
 
 		const generatePrompt = (title, date, duration, hour, tags) => {
 			console.log(title, date, duration, hour, tags)
-			return `Escribe una invitacion breve para un evento de videojuegos llamado ${title}, que será el ${date} durara ${duration} minutos y comenzara a las ${hour}. Los tags del evento son ${tags}.`
+			return `Escribe una invitacion breve para un evento de videojuegos llamado ${title}, que será el ${date} durará ${duration} minutos y comenzará a las ${hour}. Los tags del evento son ${tags}.`
 		}
 
 		const { title, date, duration, hour, tags } = req.body
